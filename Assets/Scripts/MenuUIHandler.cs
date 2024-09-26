@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // Sets the script to be executed later than all default scripts
@@ -45,5 +44,13 @@ public class MenuUIHandler : MonoBehaviour
             loadingSlider.value = loadAsync.progress;
             yield return null;
         } while (!loadAsync.isDone);
+    }
+
+    public void ExitGame() {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }
