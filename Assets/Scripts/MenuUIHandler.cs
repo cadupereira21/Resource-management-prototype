@@ -16,11 +16,10 @@ public class MenuUIHandler : MonoBehaviour
     
     [SerializeField] private Slider loadingSlider;
 
-    public void NewColorSelected(Color color)
-    {
-        // add code here to handle when a color is selected
+    public void NewColorSelected(Color color) {
+        MainManager.Instance.teamColor = color;
     }
-    
+
     private void Start() {
         colorPicker.Init();
         //this will call the NewColorSelected function when the color picker have a color button clicked.
