@@ -27,6 +27,8 @@ public class MenuUIHandler : MonoBehaviour
         
         menuCanvas.SetActive(true);
         loadingCanvas.SetActive(false);
+        
+        colorPicker.SelectColor(MainManager.Instance.teamColor);
     }
 
     public void StartNewGame() {
@@ -44,6 +46,15 @@ public class MenuUIHandler : MonoBehaviour
             yield return null;
         } while (!loadAsync.isDone);
     }
+    
+    public void SaveColor() {
+        MainManager.Instance.SaveColor();
+    }
+    
+    public void LoadColor() {
+        MainManager.Instance.LoadColor();
+        colorPicker.SelectColor(MainManager.Instance.teamColor);
+    }
 
     public void ExitGame() {
         #if UNITY_EDITOR
@@ -51,5 +62,7 @@ public class MenuUIHandler : MonoBehaviour
         #else
             Application.Quit();
         #endif
+        
+        MainManager.Instance.SaveColor();
     }
 }
